@@ -11,7 +11,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 
 -- greatest remap ever
---vim.keymap.set("x", "<leader>p", [["_dP]])
+---vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- next greatest remap ever : asbjornHaland
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
@@ -40,3 +40,19 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
+
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+-- Replace '<leader>rn', '<leader>rp', and '<leader>rl' with your desired keybindings
+map('n', '<leader>rn', "<cmd>lua require('rest-nvim').run()<CR>", opts)
+map('n', '<leader>rp', "<cmd>lua require('rest-nvim').run(true)<CR>", opts)
+map('n', '<leader>rl', "<cmd>lua require('rest-nvim').last()<CR>", opts)
+
+vim.api.nvim_create_user_command('RestSelectEnv', function(opts)
+    require('rest-nvim').select_env(opts.fargs[1])
+end, { nargs = '?', complete = 'file' })
+
+vim.api.nvim_create_user_command('RestLog', function()
+    vim.cmd('tabnew ' .. vim.fn.stdpath('cache') .. '/rest.nvim.log')
+end, { desc = 'Opens the rest.nvim log.' })
+
