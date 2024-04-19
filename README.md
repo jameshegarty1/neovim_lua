@@ -1,3 +1,5 @@
+Neovim Configuration with Packer
+
 To use:
 
 Install `nvim` (e.g. Ubuntu):
@@ -6,7 +8,7 @@ Install `nvim` (e.g. Ubuntu):
 
 Go to `~/.config/` if it exists, else create it
 
-Clone the repo:
+Clone the repo
 
-
+Source packer.lua and run :PackerSync
 
